@@ -1,0 +1,26 @@
+[
+    {
+        "feature_id": 1,
+        "description": "Ajouter un bouton de retour",
+        "status": "pending",
+        "votes": []
+    },
+    {
+        "feature_id": 2,
+        "description": "Créer une page de connexion",
+        "status": "pending",
+        "votes": []
+    },
+    {
+        "feature_id": 3,
+        "description": "Améliorer les performances du chargement",
+        "status": "pending",
+        "votes": []
+    },
+    {
+        "feature_id": 4,
+        "description": "Ajouter une fonctionnalité de recherche",
+        "status": "pending",
+        "votes": []
+    }
+]
