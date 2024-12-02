@@ -27,6 +27,6 @@ jobs:
 
     - name: Run tests and generate HTML report
       run: |
-        pytest import tkinter as tk.py
+        pytest monCodejeu.py
       env:
         CI: true
