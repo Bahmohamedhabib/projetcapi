@@ -8,8 +8,9 @@ import json
 import time
 from threading import Thread
 
-# Disable Tkinter if running in a test environment
-if os.environ.get("TEST_ENVIRONMENT"):
+# Désactiver Tkinter dans un environnement sans affichage graphique
+if not os.environ.get("DISPLAY") and os.name != "nt":  # Si pas de $DISPLAY (Linux/Unix)
+    print("Mode test détecté : désactivation de Tkinter.")
     tk.Tk = MagicMock()
     messagebox.showinfo = MagicMock()
     simpledialog.askstring = MagicMock()
@@ -176,28 +177,29 @@ def start_timer():
     Thread(target=countdown, daemon=True).start()
 
 # Main application window
-root = tk.Tk()
-root.title("CAPI")
-root.geometry("800x600")
+if __name__ == "__main__":  # Ne s'exécute que si on lance le script directement
+    root = tk.Tk()
+    root.title("CAPI")
+    root.geometry("800x600")
 
-# Load card images
-load_card_images()
+    # Load card images
+    load_card_images()
 
-# Setup screen
-tk.Label(root, text="Projet Capi", font=("Arial", 16)).pack(pady=10)
+    # Setup screen
+    tk.Label(root, text="Projet Capi", font=("Arial", 16)).pack(pady=10)
 
-frame_players = tk.Frame(root)
-frame_players.pack(pady=5)
-tk.Label(frame_players, text="Nombre de joueurs:").pack(side=tk.LEFT)
-entry_players = tk.Entry(frame_players, width=10)
-entry_players.pack(side=tk.LEFT)
+    frame_players = tk.Frame(root)
+    frame_players.pack(pady=5)
+    tk.Label(frame_players, text="Nombre de joueurs:").pack(side=tk.LEFT)
+    entry_players = tk.Entry(frame_players, width=10)
+    entry_players.pack(side=tk.LEFT)
 
-rule_var = tk.StringVar()
-tk.Label(root, text="Voting Rule:").pack(pady=5)
-rules = ["Strict (Unanimity)", "Moyenne (Average)", "Médiane (Median)", "Majorité Absolue (Absolute Majority)"]
-for rule in rules:
-    tk.Radiobutton(root, text=rule, variable=rule_var, value=rule).pack(anchor=tk.W)
+    rule_var = tk.StringVar()
+    tk.Label(root, text="Voting Rule:").pack(pady=5)
+    rules = ["Strict (Unanimity)", "Moyenne (Average)", "Médiane (Median)", "Majorité Absolue (Absolute Majority)"]
+    for rule in rules:
+        tk.Radiobutton(root, text=rule, variable=rule_var, value=rule).pack(anchor=tk.W)
 
-tk.Button(root, text="Start Game", command=start_game).pack(pady=20)
+    tk.Button(root, text="Start Game", command=start_game).pack(pady=20)
 
-root.mainloop()
+    root.mainloop()
