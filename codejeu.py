@@ -1,11 +1,18 @@
+import os
 import tkinter as tk
 from tkinter import messagebox, simpledialog
+from unittest.mock import MagicMock
 from PIL import Image, ImageTk
 import cairosvg
 import json
-import os
 import time
 from threading import Thread
+
+# Disable Tkinter if running in a test environment
+if os.environ.get("TEST_ENVIRONMENT"):
+    tk.Tk = MagicMock()
+    messagebox.showinfo = MagicMock()
+    simpledialog.askstring = MagicMock()
 
 # Global variables for game state
 backlog = []
@@ -48,9 +55,12 @@ def load_card_images():
 def start_game():
     global backlog, votes, current_feature
 
-    num_players = int(entry_players.get())
-    if num_players < 1:
-        messagebox.showerror("Invalid Input", "Number of players must be at least 1.")
+    try:
+        num_players = int(entry_players.get())
+        if num_players < 1:
+            raise ValueError("Number of players must be at least 1.")
+    except ValueError as e:
+        messagebox.showerror("Invalid Input", str(e))
         return
 
     players = [simpledialog.askstring("Player Name", f"Enter name for Player {i + 1}") for i in range(num_players)]
@@ -163,7 +173,7 @@ def start_timer():
             time_left -= 1
             timer_label.config(text=f"Time Remaining: {time_left}")
 
-    Thread(target=countdown).start()
+    Thread(target=countdown, daemon=True).start()
 
 # Main application window
 root = tk.Tk()
