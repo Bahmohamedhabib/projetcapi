@@ -35,6 +35,6 @@ jobs:
 
     - name: Run tests and generate HTML report
       run: |
-        pytest codejeu.py
+        pytest test_codejeu.py
       env:
         CI: true
