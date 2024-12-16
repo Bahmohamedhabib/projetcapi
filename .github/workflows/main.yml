@@ -26,6 +26,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest pytest-html Pillow cairosvg
 
+    - name: Install Xvfb
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        Xvfb :99 -screen 0 1024x768x24 &
+        export DISPLAY=:99
+
     - name: Run tests and generate HTML report
       run: |
         pytest codejeu.py
