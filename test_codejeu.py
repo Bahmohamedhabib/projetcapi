@@ -1,5 +1,5 @@
 import pytest
-from codejeu import calculate_results, finalize_feature
+from codejeu import calculate_results
 
 def test_calculate_results_average():
     votes = {"Player1": "5", "Player2": "8", "Player3": "13"}
@@ -18,3 +18,10 @@ def test_calculate_results_median():
     rule = "Médiane (Median)"
     result = calculate_results(votes, rule)
     assert result == 5  # La médiane de 3, 5, 8 est 5
+
+def test_calculate_results_majority():
+    votes = {"Player1": "8", "Player2": "8", "Player3": "5"}
+    rule = "Majorité Absolue (Absolute Majority)"
+    result = calculate_results(votes, rule)
+    assert result == "8"  # Le vote majoritaire est "8"
+
