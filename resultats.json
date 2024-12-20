@@ -3,28 +3,36 @@
         "feature_id": 1,
         "description": "Ajouter un bouton de retour",
         "status": "validated",
-        "votes": [],
-        "difficulty": "cafe"
+        "votes": {
+            "efzef": "8",
+            "fffz": "8"
+        }
     },
     {
         "feature_id": 2,
         "description": "Cr\u00c3\u00a9er une page de connexion",
         "status": "validated",
-        "votes": [],
-        "difficulty": "1"
+        "votes": {
+            "efzef": "8",
+            "fffz": "8"
+        }
     },
     {
         "feature_id": 3,
         "description": "Am\u00c3\u00a9liorer les performances du chargement",
         "status": "validated",
-        "votes": [],
-        "difficulty": "2"
+        "votes": {
+            "efzef": "8",
+            "fffz": "8"
+        }
     },
     {
         "feature_id": 4,
         "description": "Ajouter une fonctionnalit\u00c3\u00a9 de recherche",
         "status": "validated",
-        "votes": [],
-        "difficulty": "5"
+        "votes": {
+            "efzef": "8",
+            "fffz": "8"
+        }
     }
 ]
