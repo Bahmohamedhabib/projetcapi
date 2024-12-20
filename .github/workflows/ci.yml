@@ -1,0 +1,47 @@
+name: CI - Planning Poker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Étape 1 : Cloner le dépôt
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Étape 2 : Configurer Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'  # Vous pouvez choisir une autre version si nécessaire
+
+    # Étape 3 : Installer les dépendances
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install pillow cairosvg pytest
+
+    # Étape 4 : Lancer les tests unitaires
+    - name: Run tests
+      run: |
+        pytest tests/
+
+    # (Optionnel) Étape 5 : Vérification du formatage du code (linting)
+    - name: Run flake8 (code linting)
+      run: |
+        pip install flake8
+        flake8 src/
+
+    # (Optionnel) Étape 6 : Générer la documentation (si applicable)
+    - name: Generate documentation
+      run: |
+        pip install pdoc
+        pdoc --output-dir docs src
