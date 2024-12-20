@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
-from utils import load_backlog, load_card_images
-from game_logic import calculate_results
+from src.utils  import load_backlog, load_card_images
+from src.game_logic import calculate_results
+
 import json
 
 backlog = []
