@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
-from utils import load_backlog, save_backlog, load_card_images
+from utils import load_backlog, load_card_images
 from game_logic import calculate_results
-import time
 import json
 
 backlog = []
@@ -11,7 +10,7 @@ current_feature = 0
 timer_running = False
 num_players = 0
 player_names = []
-current_player_index = 0  # Indice du joueur en cours
+urrent_player_index = 0  # Indice du joueur en cours
 
 
 def ask_num_players(root, rule_var):
@@ -161,7 +160,6 @@ def validate_feature_vote(root, rule_var, feature_frame):
             ).pack(pady=20)
     else:
         messagebox.showwarning("Vote insuffisant", "Le consensus n'a pas été atteint. Recommencez le vote.")
-        current_player_index = 0
         votes.clear()
         feature_frame.destroy()
         display_feature(root, rule_var)

@@ -3,12 +3,19 @@ import json
 from PIL import Image, ImageTk
 import cairosvg
 
-card_images = {}  # Dictionnaire global pour stocker les images des cartes
+# Dictionnaire global pour stocker les images des cartes
+card_images = {}
 
 
 def load_backlog(filepath="data/backlog.json"):
     """
     Charge le backlog depuis un fichier JSON.
+
+    Args:
+        filepath (str): Chemin vers le fichier JSON contenant le backlog.
+
+    Returns:
+        list: Liste des éléments du backlog ou une liste vide en cas d'erreur.
     """
     try:
         with open(filepath, 'r') as f:
@@ -24,6 +31,10 @@ def load_backlog(filepath="data/backlog.json"):
 def save_backlog(filepath="data/backlog.json", data=None):
     """
     Sauvegarde le backlog dans un fichier JSON.
+
+    Args:
+        filepath (str): Chemin vers le fichier où sauvegarder les données.
+        data (list): Données du backlog à sauvegarder.
     """
     try:
         with open(filepath, 'w') as f:
@@ -34,7 +45,11 @@ def save_backlog(filepath="data/backlog.json", data=None):
 
 def load_card_images():
     """
-    Charge les cartes SVG, les convertit en PNG, et les redimensionne pour l'interface graphique.
+    Charge les cartes SVG, les convertit en PNG, et les redimensionne pour
+    l'interface graphique.
+
+    Returns:
+        dict: Dictionnaire associant les clés des cartes aux objets ImageTk.PhotoImage.
     """
     global card_images
     card_files = {
